@@ -28,9 +28,9 @@ var creerCompte = function(role,nom,prenom,adresse,mail,numtel) {
 		var acteur = new Acteur(role,nom,prenom,adresse,mail,numtel);
 		//on l'ajoute a la liste des Comptes
 		listeComptes[idActeur-1] = acteur;
-		//console.log(listeComptes);
+			console.log(listeComptes);
 		classerCompte(acteur);
-		return true;
+		return acteur.id;
     }
     return false;
 }
@@ -75,12 +75,30 @@ var accesSection = function(id){
 	}
 	return false; //il n'est pas miagiste
 }
-/*
+
 creerCompte('non miagiste', 'nom1', 'prenom1', 'adresse', 'yfyjvh@cdc.com', '5678987654');
 creerCompte('non miagiste', 'nom2', 'prenom2', 'adresse', 'yfyjvh@cdc.com', '5678987654');
 creerCompte('miagiste', 'nom3', 'prenom1', 'adresse', 'yfyjvh@cdc.com', '5678987654');
-
+/*
 console.log(listeMiagiste);
 console.log(listeNonMiagiste);
 console.log(listeCollaborateur);
 */
+
+// pour connaitre la position d'un compte existant
+var positionDuCompte = function(id) {
+	//console.log(listeComptes);
+	// s'il n'existe pas
+	if (typeof listeComptes[id] === 'undefined')
+		return false;
+    return listeComptes[id];
+}
+
+listeComptes = JSON.stringify(listeComptes);
+
+// les 4 fonctions exportées
+exports.creerCompte = creerCompte;
+exports.classerCompte = classerCompte;
+exports.basculerCompte = basculerCompte;
+exports.accesSection = accesSection;
+exports.positionDuCompte = positionDuCompte;

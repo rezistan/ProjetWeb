@@ -21,8 +21,8 @@ app.get('/comptes/:id', function(req, res)
 // affiche la valeur du paramètre id sur la console de node
 console.log(req.params.id) ;
 //tu va choper le compte dont le lien est passé dans lurl 
-var cpt = banque.positionDuCompte(req.params.id);
-if( cpt===false){ 
+var cpt = acteur.positionDuCompte(req.params.id);
+if(cpt===false){ 
 	res.status(404).send('Compte '+req.params.id+ ' inexistant'); //http status404 // cest objet vide dans position du compte 
 }
 else{ 
@@ -38,10 +38,14 @@ else{
 app.put('/comptes/:id', function(req,res){
 	//A
 		
-	var id =req.params.id;
-	//body te permet de lire ce quil ya dans le body de la page 
-	var operation = req.body.operation;
-	var somme=req.body.somme;
+	//body te permet de lire ce quil ya dans le body de la page
+	var role =req.body.role; 
+	var nom = req.body.nom;
+	var prenom=req.body.prenom;
+	var adresse = req.body.adresse;
+	var mail=req.body.mail;
+	var telephone = req.body.telephone;
+
 	if(operation ===1){ 
 		banque.ajouterAuCompte(id,somme);
 	}
@@ -61,11 +65,17 @@ app.post('/comptes/', function(req, res)
 {
 	console.log(req.body);
 	// il cree un formulaire de creation de compte (mais juste un peu )
-	var id = req.body.id;
-	var somme = req.body.somme;
-	banque.creerCompte(id,somme);
+	var role =req.body.role; 
+	var nom = req.body.nom;
+	var prenom=req.body.prenom;
+	var adresse = req.body.adresse;
+	var mail=req.body.mail;
+	var telephone = req.body.telephone;
+
+	var id = creerCompte(role,nom,prenom,adresse,mail,telephone);
+	console.log(id);
 	//envoie la valeur du paramètre id au naviagateur du client ayant fait l'appel
-	res.json(banque.positionDuCompte(req.body.id));
+	//res.json(acteur.positionDuCompte(id));
 });
 
 app.listen(3000, function () {
@@ -74,7 +84,6 @@ console.log('Listening on port 3000!') ;
 
 // le id pourquil puisse choper le compte a supprimer
 app.delete ('/comptes/:id', function (req,res){
-	
 	res.json(banque.supprimerCompte(req.params.id));
 });
 
