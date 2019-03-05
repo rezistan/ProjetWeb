@@ -1,8 +1,8 @@
 var express = require('express') ; // import module express
 var bodyParser = require('body-parser'); // import module body-parser
-var acteur=require('./public/acteur');// import module acteur
-var message=require('./public/message');  // import module message
-var offre=require('./public/offre');   // import module offr
+var acteur=require('./metier/acteur');// import module acteur
+var message=require('./metier/message');  // import module message
+var offre=require('./metier/offre');   // import module offr
 
 var app=express();   //
 app.use(bodyParser.json());  //inclusion du plugin pour parser du jsom

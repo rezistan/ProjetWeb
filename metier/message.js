@@ -7,11 +7,12 @@ function Message(idAuteur,contenu,reponse){
 	this.horadatage = new Date();
 	this.contenu=contenu;
 	this.reponse=reponse;
-/* Pour creer un message on fait un truc quuiu recuperer lid de lauteur 
-le contenu et la reponse
-*/ 
+	/* Pour creer un message on fait un truc quuiu recuperer lid de lauteur 
+	le contenu et la reponse
+	*/ 
 
 	this.ajouter = function(contenu) {
-  	this.position.somme += somme;
-  	this.position.date = new Date();
+	  	this.position.somme += somme;
+	  	this.position.date = new Date();
+	}
 }
