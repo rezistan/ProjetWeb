@@ -94,8 +94,6 @@ var positionDuCompte = function(id) {
     return listeComptes[id];
 }
 
-listeComptes = JSON.stringify(listeComptes);
-
 // les 4 fonctions exportées
 exports.creerCompte = creerCompte;
 exports.classerCompte = classerCompte;
