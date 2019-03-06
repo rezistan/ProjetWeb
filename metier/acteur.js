@@ -75,11 +75,11 @@ var accesSection = function(id){
 	}
 	return false; //il n'est pas miagiste
 }
-
+/*
 creerCompte('non miagiste', 'nom1', 'prenom1', 'adresse', 'yfyjvh@cdc.com', '5678987654');
 creerCompte('non miagiste', 'nom2', 'prenom2', 'adresse', 'yfyjvh@cdc.com', '5678987654');
 creerCompte('miagiste', 'nom3', 'prenom1', 'adresse', 'yfyjvh@cdc.com', '5678987654');
-/*
+
 console.log(listeMiagiste);
 console.log(listeNonMiagiste);
 console.log(listeCollaborateur);
