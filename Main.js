@@ -46,6 +46,7 @@ app.put('/comptes/:id', function(req,res){
 	var mail=req.body.mail;
 	var telephone = req.body.telephone;
 
+	/*
 	if(operation ===1){ 
 		banque.ajouterAuCompte(id,somme);
 	}
@@ -54,7 +55,7 @@ app.put('/comptes/:id', function(req,res){
 		}
 		//tu lui dit juste je connais pas avec le res ya pas dinteraction avec la banque justement car cest une mauvaise info
 	else res.send("Operation non reconnue chef soit cest 1 =ajouter soit cest 2 =retirer  petit cretin ");	
-
+	*/
 
 	res.json(banque.positionDuCompte(req.params.id))
 });
