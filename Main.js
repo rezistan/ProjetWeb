@@ -90,6 +90,21 @@ app.delete ('/comptes/:id', function (req,res){
 
 
 
+//creation d'une offre 
+app.post('/moffre/',function(req,res)
+{
+	console(req.body);
+	var type =req.body.type;
+	var nomSociete=req.body.nomSociete;
+	var sujet=req.body.sujet;
+	var adresse =req.body.adresse;
+	var mail=req.body.mail;
+	var tel =req.body.tel;
+	offre.proposerOffre(type,nomSociete,sujet,adresse,mail,tel);
+
+});
+
+
 
      
 
