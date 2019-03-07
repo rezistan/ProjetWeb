@@ -1,7 +1,7 @@
-var listeComptes=[];
-var listeMiagiste=[];
-var listeNonMiagiste=[];
-var listeCollaborateur=[];
+var listeComptes={};
+var listeMiagiste={};
+var listeNonMiagiste={};
+var listeCollaborateur={};
 var idActeur=0;
 
 var miagiste = 'miagiste';
@@ -28,7 +28,7 @@ var creerCompte = function(role,nom,prenom,adresse,mail,numtel) {
 		var acteur = new Acteur(role,nom,prenom,adresse,mail,numtel);
 		//on l'ajoute a la liste des Comptes
 		listeComptes[idActeur-1] = acteur;
-			console.log(listeComptes);
+		//console.log(listeComptes);
 		classerCompte(acteur);
 		return acteur.id;
     }
@@ -42,26 +42,35 @@ var classerCompte = function(acteur){
 	if(acteur !== 'undefined'){
 		if(acteur.role === miagiste){
 			//copie de tableau
-			listeMiagiste.push(acteur);
+			//listeMiagiste.push(acteur);
+			listeMiagiste[Object.keys(listeMiagiste).length] = acteur;
 		}
 		else if (acteur.role === nonMiagiste)
 		{
-			listeNonMiagiste.push(acteur);
+			//listeNonMiagiste.push(acteur);
+			listeNonMiagiste[Object.keys(listeNonMiagiste).length] = acteur;
 		}
 		else 
 		{
-			listeCollaborateur.push(acteur);
+			//listeCollaborateur.push(acteur);
+			listeCollaborateur[Object.keys(listeCollaborateur).length] = acteur;
 		}
+		/*
+		Object.keys(listeCollaborateur).length permet d'avoir l'indice de
+		la case du tableau JSON suivant la derniere case. Cela permet 
+		d'ajouter un nouvel élément au tableau JSON (equivalent fonction push
+		*/
 	}
 }
 
 //methode basculer d'un compte a un autre
 var basculerCompte = function(id){
-	for(var i=0; i<listeNonMiagiste.length; i++){
+	for(var i=0; i<Object.keys(listeNonMiagiste).length; i++){
 		if(listeNonMiagiste[i].id === id){
 			listeNonMiagiste[i].role = miagiste; //on change son role
-			listeMiagiste.push(listeNonMiagiste[i]); //on le met dans la liste des miagistes
-			listeNonMiagiste.splice(i, 1); //on l'enlève de la liste des non miagistes
+			//listeMiagiste.push(listeNonMiagiste[i]); 
+			listeMiagiste[Object.keys(listeMiagiste).length] = listeNonMiagiste[i];//on le met dans la liste des miagistes
+			delete listeNonMiagiste[i]; //on l'enlève de la liste des non miagistes
 		}
 	}
 }
@@ -75,6 +84,7 @@ var accesSection = function(id){
 	}
 	return false; //il n'est pas miagiste
 }
+
 /*
 creerCompte('non miagiste', 'nom1', 'prenom1', 'adresse', 'yfyjvh@cdc.com', '5678987654');
 creerCompte('non miagiste', 'nom2', 'prenom2', 'adresse', 'yfyjvh@cdc.com', '5678987654');
@@ -91,11 +101,10 @@ var positionDuCompte = function(id) {
 	// s'il n'existe pas
 	if (typeof listeComptes[id] === 'undefined')
 		return false;
-    return listeComptes[id];
+    return JSON.parse(JSON.stringify(listeComptes[id])); //mise en forme du tableau json
 }
 
 
-listeComptes = JSON.stringify(listeComptes);
 // les 4 fonctions exportées
 exports.creerCompte = creerCompte;
 exports.classerCompte = classerCompte;

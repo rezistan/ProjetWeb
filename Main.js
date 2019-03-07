@@ -66,17 +66,17 @@ app.post('/comptes/', function(req, res)
 {
 	console.log(req.body);
 	// il cree un formulaire de creation de compte (mais juste un peu )
-	var role =req.body.role; 
+	var role = req.body.role; 
 	var nom = req.body.nom;
-	var prenom=req.body.prenom;
+	var prenom = req.body.prenom;
 	var adresse = req.body.adresse;
-	var mail=req.body.mail;
+	var mail = req.body.mail;
 	var telephone = req.body.telephone;
 
-	var id = creerCompte(role,nom,prenom,adresse,mail,telephone);
-	console.log(id);
+	var id = acteur.creerCompte(role,nom,prenom,adresse,mail,telephone);
+	//console.log(id);
 	//envoie la valeur du paramètre id au naviagateur du client ayant fait l'appel
-	//res.json(acteur.positionDuCompte(id));
+	res.json(acteur.positionDuCompte(id));
 });
 
 app.listen(3000, function () {

@@ -1,5 +1,5 @@
 var idMessage=0;
-listeMessages = [];
+listeMessages = {};
 
 //Constructeur Message
 function Message(idAuteur,contenu,reponse){
@@ -21,7 +21,9 @@ function Message(idAuteur,contenu,reponse){
 */
 var poserQuestion= function(idAuteur, contenu){
 	var question = new Message (idAuteur,contenu, null);
-	listeMessages.push(question);
+	//console.log('ici'); console.log(JSON.stringify(listeMessages));
+	listeMessages[Object.keys(listeMessages).length] = question;
+	//listeMessages.push(question);
 	return question;
 }
 
@@ -40,7 +42,7 @@ var repondreQuestion = function(question, newReponse){
 * Permet voir la liste des messages
 */
 var lireMsg= function(){
-	return listeMessages;	
+	return listeMessages;
 }
 
 /**
@@ -48,21 +50,21 @@ var lireMsg= function(){
 * Permet voir la liste des messages sans réponse
 */
 var lireMsgFiltre= function(){
-	listeMsgFiltre  = [];
+	listeMsgFiltre  = {};
 	for(var i=0; i<listeMessages.length; i++){
 		if(listeMessages[i].reponse === null){
-			listeMsgFiltre.push(listeMessages[i]);
+			listeMsgFiltre[Object.keys(listeMsgFiltre).length] = listeMessages[i];
+			//listeMsgFiltre.push(listeMessages[i]);
 		}
 	}
 	return listeMsgFiltre;
 }
-
 /*
 poserQuestion(1, "Ouais ouais ouais");
 var q2 = poserQuestion(2, "Ouais ouais ouais");
 poserQuestion(3, "Ouais ouais ouais");
 repondreQuestion(q2, "Non mec");
-console.log(lireMsgFiltre());
+console.log(lireMsg());
 */
 
 exports.poserQuestion = poserQuestion;
