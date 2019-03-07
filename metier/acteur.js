@@ -36,6 +36,17 @@ var creerCompte = function(role,nom,prenom,adresse,mail,numtel) {
 }
 
 
+// methode modifier un compte
+var modifierCompte = function(id, role,nom,prenom,adresse,mail,numtel) {
+	var acteur = listeComptes[id];
+	acteur.role = role;
+	acteur.nom = nom;
+	acteur.prenom = prenom;
+	acteur.adresse = adresse;
+	acteur.mail = mail;
+	acteur.numtelacteur = numtel;
+}
+
 //methode classer les comptes 
 //premet de classer chaque compte créé selon son rôle
 var classerCompte = function(acteur){
@@ -107,6 +118,7 @@ var positionDuCompte = function(id) {
 
 // les 4 fonctions exportées
 exports.creerCompte = creerCompte;
+exports.modifierCompte = modifierCompte;
 exports.classerCompte = classerCompte;
 exports.basculerCompte = basculerCompte;
 exports.accesSection = accesSection;

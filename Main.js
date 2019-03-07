@@ -37,7 +37,7 @@ else{
 
 app.put('/comptes/:id', function(req,res){
 	//A
-		
+	var id = req.params.id;	
 	//body te permet de lire ce quil ya dans le body de la page
 	var role =req.body.role; 
 	var nom = req.body.nom;
@@ -46,18 +46,10 @@ app.put('/comptes/:id', function(req,res){
 	var mail=req.body.mail;
 	var telephone = req.body.telephone;
 
-	/*
-	if(operation ===1){ 
-		banque.ajouterAuCompte(id,somme);
-	}
-	else if (operation===2){
-		banque.retirerDuCompte(id,somme);
-		}
-		//tu lui dit juste je connais pas avec le res ya pas dinteraction avec la banque justement car cest une mauvaise info
-	else res.send("Operation non reconnue chef soit cest 1 =ajouter soit cest 2 =retirer  petit cretin ");	
-	*/
 
-	res.json(banque.positionDuCompte(req.params.id))
+	acteur.modifierCompte(id,role,nom,prenom,adresse,mail,telephone);
+	//envoie la valeur du paramètre id au naviagateur du client ayant fait l'appel
+	res.json(acteur.positionDuCompte(id));
 });
 
 
@@ -74,7 +66,6 @@ app.post('/comptes/', function(req, res)
 	var telephone = req.body.telephone;
 
 	var id = acteur.creerCompte(role,nom,prenom,adresse,mail,telephone);
-	//console.log(id);
 	//envoie la valeur du paramètre id au naviagateur du client ayant fait l'appel
 	res.json(acteur.positionDuCompte(id));
 });
