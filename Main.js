@@ -146,7 +146,7 @@ app.post('/msg/', function(req,res)
 
 
 
-app.get('')('/msg/', function(req,res)
+app.get('/msg/', function(req,res)
 {
 	console.log(req.body);
 
