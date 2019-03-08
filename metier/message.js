@@ -27,13 +27,26 @@ var poserQuestion= function(idAuteur, contenu){
 	return question;
 }
 
+// pour connaitre la position d'un message existant
+var positionMessage = function(id) {
+	//console.log(listeComptes);
+	// s'il n'existe pas
+	if (typeof listeMessages[id] === 'undefined')
+		return false;
+    return JSON.parse(JSON.stringify(listeMessages[id])); //mise en forme du tableau json
+}
 
 /**
 *
 * Permet à un collaborateur de répondre à une question
 */
 var repondreQuestion = function(question, newReponse){
-	question.reponse = newReponse;
+	for(var i=0; i<Object.keys(listeMessages).length; i++){
+		if(listeMessages[i].id === question.id){
+			var mess = listeMessages[question.id];
+			mess.reponse = newReponse;
+		}
+	}
 }
 
 
@@ -51,7 +64,7 @@ var lireMsg= function(){
 */
 var lireMsgFiltre= function(){
 	listeMsgFiltre  = {};
-	for(var i=0; i<listeMessages.length; i++){
+	for(var i=0; i<Object.keys(listeMessages).length; i++){
 		if(listeMessages[i].reponse === null){
 			listeMsgFiltre[Object.keys(listeMsgFiltre).length] = listeMessages[i];
 			//listeMsgFiltre.push(listeMessages[i]);
@@ -71,3 +84,4 @@ exports.poserQuestion = poserQuestion;
 exports.repondreQuestion = repondreQuestion;
 exports.lireMsg = lireMsg;
 exports.lireMsgFiltre = lireMsgFiltre;
+exports.positionMessage = positionMessage;
