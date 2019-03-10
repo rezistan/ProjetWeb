@@ -29,7 +29,8 @@ app.get('/comptes/:id', function(req, res)
 	//tu va choper le compte dont le lien est passé dans lurl 
 	var cpt = acteur.positionDuCompte(req.params.id);
 	if(cpt===false){ 
-		res.status(404).send('Compte '+req.params.id+ ' inexistant'); //http status404 // cest objet vide dans position du compte 
+		//res.status(404).send('Compte '+req.params.id+ ' inexistant'); //http status404 // cest objet vide dans position du compte 
+		res.status(404).json({ error: "Le compte d'id "+req.params.id+" n'existe pas." });
 	}
 	else{ 
 		res.json(cpt);

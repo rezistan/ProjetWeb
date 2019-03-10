@@ -4,15 +4,21 @@
     <meta charset="utf-8">
     <title>Banque</title>
     <link rel="stylesheet" href="styles/main.css">
-    <!-- Compiled and minified CSS -->
+    <!-- Compiled and minified CSS 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+  -->
     <!-- endbuild -->
   </head>
-  <body ng-app="tp2App" class="container">
+  <body ng-app="projetWeb" class="container">
   <div ng-controller="MainCtrl">
-    <p>Id <input type="text" ng-model="obj.id"/></p>
-    <p>Somme <input type="text" ng-model="obj.somme"/></p>
+    <p>Role<input type="text" ng-model="obj.role"/></p>
+    <p>nom <input type="text" ng-model="obj.nom"/></p>
+    <p>prenom <input type="text" ng-model="obj.prenom"/></p>
+    <p>adresse<input type="text" ng-model="obj.adresse"/></p>
+    <p>mail <input type="text" ng-model="obj.mail"/></p>
+    <p>telephone <input type="text" ng-model="obj.telephone"/></p>
+    <p>id <input type="text" ng-model="obj.id"/></p>
+    
     <button ng-click="creerCompte()">Créer compte</button>
     <button ng-click="position()">Position du compte</button>
     <button ng-click="crediter()">Créditer le compte</button>
@@ -22,8 +28,9 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
 
-    <script src="../metier/acteur.js"></script>
+   <!-- <script src="../metier/acteur.js"></script>
     <script src="../metier/message.js"></script>
+  -->
     <script src="scripts/app.js"></script>
   </div>
 </body>
