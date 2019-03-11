@@ -116,15 +116,22 @@ var positionDuCompte = function(id) {
 }
 
 var listeDesComptes= function(typeDeCompte){
-	
-
-	
-	if (typeDeCompte ==='miagiste'){
+	switch(typeDeCompte){
+		case miagiste:
+			return listeMiagiste;
+		case nonMiagiste:
+			return listeNonMiagiste;
+		default:
+			return listeComptes;
+	}
+	/*
+	if (typeDeCompte === miagiste){
 		return listeMiagiste
 	}
-	else if (typeDeCompte=== 'nonMiagiste')
+	else if (typeDeCompte === nonMiagiste)
 		return listeNonMiagiste
 	else return listeComptes
+		*/
 }
 // les 4 fonctions exportées
 exports.creerCompte = creerCompte;
