@@ -77,11 +77,13 @@ var classerCompte = function(acteur){
 //methode basculer d'un compte a un autre
 var basculerCompte = function(id){
 	for(var i=0; i<Object.keys(listeNonMiagiste).length; i++){
-		if(listeNonMiagiste[i].id === id){
-			listeNonMiagiste[i].role = miagiste; //on change son role
-			//listeMiagiste.push(listeNonMiagiste[i]); 
-			listeMiagiste[Object.keys(listeMiagiste).length] = listeNonMiagiste[i];//on le met dans la liste des miagistes
-			delete listeNonMiagiste[i]; //on l'enlève de la liste des non miagistes
+		if(listeNonMiagiste[i] !== undefined){
+			if(listeNonMiagiste[i].id === id){
+				listeNonMiagiste[i].role = miagiste; //on change son role
+				//listeMiagiste.push(listeNonMiagiste[i]); 
+				listeMiagiste[Object.keys(listeMiagiste).length] = listeNonMiagiste[i];//on le met dans la liste des miagistes
+				delete listeNonMiagiste[i]; //on l'enlève de la liste des non miagistes
+			}
 		}
 	}
 }

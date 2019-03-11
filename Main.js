@@ -57,18 +57,8 @@ app.get('/comptes/:typecompte',function(req,res)
 })
 //put pour modifier 
 app.put('/comptes/:id', function(req,res){
-	//A
-	var id = req.params.id;	
-	//body te permet de lire ce quil ya dans le body de la page
-	var role =req.body.role; 
-	var nom = req.body.nom;
-	var prenom=req.body.prenom;
-	var adresse = req.body.adresse;
-	var mail=req.body.mail;
-	var telephone = req.body.telephone;
-
-
-	acteur.modifierCompte(id,role,nom,prenom,adresse,mail,telephone);
+	var id = parseInt(req.params.id);
+	acteur.basculerCompte(id);
 	//envoie la valeur du paramètre id au naviagateur du client ayant fait l'appel
 	res.json(acteur.positionDuCompte(id));
 });
