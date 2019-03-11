@@ -90,12 +90,20 @@ var basculerCompte = function(id){
 
 //methode acces a la section dedié miagiste 
 var accesSection = function(id){
-	for(var i=0; i<listeMiagiste.length; i++){ // pour chaque element de la liste des miagistes
-		if(listeMiagiste[i].id === id){ //on compare son id à celui passé en paramètre
-			return true; //il est miagiste
+	if(listeComptes[id] !== undefined){
+		if(listeComptes[id].role === miagiste){
+
+		}
+		else if(listeComptes[id].role === nonMiagiste) {
+
+		}
+		else{
+
 		}
 	}
-	return false; //il n'est pas miagiste
+	else{
+		//Compte inexistant
+	}
 }
 
 /*
