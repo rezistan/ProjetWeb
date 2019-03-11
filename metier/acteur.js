@@ -115,7 +115,17 @@ var positionDuCompte = function(id) {
     return JSON.parse(JSON.stringify(listeComptes[id])); //mise en forme du tableau json
 }
 
+var listeDesComptes= function(typeDeCompte){
+	
 
+	
+	if (typeDeCompte ==='miagiste'){
+		return listeMiagiste
+	}
+	else if (typeDeCompte=== 'nonMiagiste')
+		return listeNonMiagiste
+	else return listeComptes
+}
 // les 4 fonctions exportées
 exports.creerCompte = creerCompte;
 exports.modifierCompte = modifierCompte;
@@ -123,3 +133,4 @@ exports.classerCompte = classerCompte;
 exports.basculerCompte = basculerCompte;
 exports.accesSection = accesSection;
 exports.positionDuCompte = positionDuCompte;
+exports.listeDesComptes=listeDesComptes;

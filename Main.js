@@ -22,7 +22,7 @@ express.static(__dirname + '/bower_components'));
 
 // Lorsqu’un client fait appel à GET pour l’URL /compte/xxx
 // où xxx peut être n’importe quoi
-app.get('/comptes/:id', function(req, res)
+/*app.get('/comptes/:id', function(req, res)
 {
 	// affiche la valeur du paramètre id sur la console de node
 	console.log(req.params.id) ;
@@ -36,7 +36,25 @@ app.get('/comptes/:id', function(req, res)
 		res.json(cpt);
 	}
 
-}) ;
+}) ;*/
+
+
+// afficher les differents comptes 
+
+app.get('/comptes/:typecompte',function(req,res)
+{
+	console.log(req.params.typecompte);
+	var cpt = acteur.listeDesComptes(req.params.typecompte);
+	/*if(cpt===false){ 
+		//res.status(404).send('Compte '+req.params.id+ ' inexistant'); //http status404 // cest objet vide dans position du compte 
+		res.status(404).json({ error: "Le compte d'id "+req.params.id+" n'existe pas." });
+	}
+	else{ 
+		res.json(cpt);
+	} */
+	console.log(cpt);
+	res.json(cpt);
+})
 //put pour modifier 
 app.put('/comptes/:id', function(req,res){
 	//A
