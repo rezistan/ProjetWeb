@@ -4,8 +4,8 @@ var listeNonMiagiste={};
 var listeCollaborateur={};
 var idActeur=0;
 
-var miagiste = 'miagiste';
-var nonMiagiste = 'non miagiste';
+var miagiste = 'Miagiste';
+var nonMiagiste = 'Non miagiste';
 
 // Constructeur pour les Acteurs
 function Acteur(role,nom,prenom,adresse,mail,numtel) {
@@ -28,7 +28,7 @@ var creerCompte = function(role,nom,prenom,adresse,mail,numtel) {
 		var acteur = new Acteur(role,nom,prenom,adresse,mail,numtel);
 		//on l'ajoute a la liste des Comptes
 		listeComptes[idActeur-1] = acteur;
-		//console.log(listeComptes);
+		console.log(listeComptes);
 		classerCompte(acteur);
 		return acteur.id;
     }

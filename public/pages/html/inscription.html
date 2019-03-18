@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="projetWeb">
+<head>
+	<title>Inscription</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+</head>
+<body ng-controller="MainCtrl">
+	<h1>Inscription</h1>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Profil</label>
+          </div>
+            <select class="custom-select" type="button" id="dropdownMenu2" ng-model="obj.role">
+                <option class="dropdown-item" type="button">Miagiste</option>
+                <option class="dropdown-item" type="button">Non miagiste</option>
+                <option class="dropdown-item" type="button">Collaborateur</option>
+            </select>
+        </div>
+        <div>
+            <label for="name">Nom :</label>
+            <input type="text" id="Nom" name="user_name" class="form-control" ng-model="obj.nom">
+        </div>
+        <div>
+            <label for="name">Prenom :</label>
+            <input type="text" id="Prenom" name="user_prename" class="form-control" ng-model="obj.prenom">
+        </div>
+        <div>
+            <label for="adresse">Adresse :</label>
+            <input type="text" id="adresse" name="adresse" class="form-control"  ng-model="obj.adresse">
+        </div>
+        <div>
+            <label for="mail">Adresse mail:</label>
+            <input type="email" id="mail" name="user_mail" class="form-control" ng-model="obj.mail">
+        </div>
+        <div>
+            <label for="name">Tel :</label>
+            <input type="number" id="Tel" name="telephone" class="form-control" ng-model="obj.telephone">
+        </div>
+        <br>
+        <button class="btn btn-primary" ng-click="creerCompte()">Valider</button><br>
+        {{ resultat | json }}
+</body>
+</html>

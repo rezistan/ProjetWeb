@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html ng-app="ficCentral" >
   <head>
     <meta charset="utf-8">
     <title>Banque</title>
@@ -9,8 +9,10 @@
   -->
     <!-- endbuild -->
   </head>
-  <body ng-app="projetWeb" class="container">
-  <div ng-controller="MainCtrl">
+  <body class="container">
+  <div>
+
+    <!--
     <p>Role<input type="text" ng-model="obj.role"/></p>
     <p>nom <input type="text" ng-model="obj.nom"/></p>
     <p>prenom <input type="text" ng-model="obj.prenom"/></p>
@@ -24,18 +26,28 @@
     <button ng-click="modifier()">modifier compte</button>
     <br>
     <button ng-click="connexion()">Position du compte</button>
+    <p>Resultat : {{resultat | json}}</p>
+    -->
+    <ul>
+      <li><a ui-sref="connexion" ui-sref-active="active">Se connecter</a></li>
+      <li><a ui-sref="inscription" ui-sref-active="active">Creer Un Compte</a></li>
+      <li><a ui-sref="question" ui-sref-active="active">Poser une Question</a></li>
+    </ul>
+
+    <ui-view></ui-view>
+
+    <a ui-sref="index" ui-sref-active="active">Accueil</a>
 
    <!-- <button ng-click="crediter()">Créditer le compte</button>
     <button ng-click="debiter()">Débiter le compte</button>
   -->
-    <p>Resultat : {{resultat | json}}</p>
+
 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
 
-   <!-- <script src="../metier/acteur.js"></script>
-    <script src="../metier/message.js"></script>
-  -->
+    <script src="//unpkg.com/@uirouter/angularjs@1.0.5/release/angular-ui-router.js"></script>  
+
     <script src="scripts/app.js"></script>
   </div>
 </body>
