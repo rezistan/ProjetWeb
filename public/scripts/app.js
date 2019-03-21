@@ -61,12 +61,6 @@ angular
 
   });
 
-
-
-
-
-
-
 var myApp = angular.module('ficCentral', ['ui.router']);
 
 //Contient tous les chemins vers les differentes pages
@@ -107,7 +101,8 @@ myApp.config(function($stateProvider) {
     { 
       name: 'inscription', 
       url: '/inscription', 
-      templateUrl: '/pages/html/inscription.html'
+      templateUrl: '/pages/html/inscription.html',
+      controller: 'MainCtrl'
     },
     
     { 

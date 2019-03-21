@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <title>Banque</title>
     <link rel="stylesheet" href="styles/main.css">
-    <!-- Compiled and minified CSS 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  -->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
     <!-- endbuild -->
   </head >
   <body class="container">
-  <div ng-controller= "MainCtrl">
+  <div ng-controller="MainCtrl">
 
-    
+ <!--  
     <p>Role<input type="text" ng-model="obj.role"/></p>
     <p>nom <input type="text" ng-model="obj.nom"/></p>
     <p>prenom <input type="text" ng-model="obj.prenom"/></p>
@@ -37,11 +37,6 @@
     <ui-view></ui-view>
 
     <a ui-sref="index" ui-sref-active="active">Accueil</a>
-
-   <!-- <button ng-click="crediter()">Créditer le compte</button>
-    <button ng-click="debiter()">Débiter le compte</button>
-  -->
-
 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>

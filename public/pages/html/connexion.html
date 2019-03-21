@@ -1,24 +1,10 @@
-<!doctype html>
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Connexion</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
-<body>
 	 <h1>Se connecter</h1>
 	 <form>
     
      <div class="form-group">
     	<label for="Identifiant">Votre identifiant</label><br>
-	    <input type="identifiant" class="form-control" id="identifiant" aria-describedby="id" placeholder="Enter identifiant">
+	    <input type="identifiant" class="form-control" id="identifiant"  ng-model="obj.id" aria-describedby="id" placeholder="Enter identifiant">
 
   </div>
-    <button type="submit" class="btn btn-primary">Valider</button>
+    <button type="submit" class="btn btn-primary"  ng-click="position()">Valider</button>
 	 </form>
-
- 	
-
-
-</body>
-</html>
