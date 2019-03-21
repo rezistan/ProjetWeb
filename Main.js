@@ -15,11 +15,6 @@ app.use('/bower_components',
 express.static(__dirname + '/bower_components'));
 
 
-/*app.use(function(req, res){
-	res.sendFile(__dirname + '/public/index.html');
-});*/
-
-
 /**
 *************************Acteur*****************************
 *
@@ -40,16 +35,16 @@ express.static(__dirname + '/bower_components'));
 	else{ 
 		res.json(cpt);
 	}
-
+w<
 }) ;*/
 
 
 // afficher les differents comptes 
 
-app.get('/comptes/:id',function(req,res)
+app.get('/comptes/:typecompte',function(req,res)
 {
-	//console.log(req.query.typecompte);
-	var cpt = acteur.positionDuCompte(req.params.id);
+	console.log(req.params.typecompte);
+	var cpt = acteur.listeDesComptes(req.params.typecompte);
 	/*if(cpt===false){ 
 		//res.status(404).send('Compte '+req.params.id+ ' inexistant'); //http status404 // cest objet vide dans position du compte 
 		res.status(404).json({ error: "Le compte d'id "+req.params.id+" n'existe pas." });
@@ -59,23 +54,7 @@ app.get('/comptes/:id',function(req,res)
 	} */
 	console.log(cpt);
 	res.json(cpt);
-});
-
-
-app.get('/comptes/',function(req,res)
-{
-	var cpt = acteur.listeDesComptes(req.query.type);
-	/*if(cpt===false){ 
-		//res.status(404).send('Compte '+req.params.id+ ' inexistant'); //http status404 // cest objet vide dans position du compte 
-		res.status(404).json({ error: "Le compte d'id "+req.params.id+" n'existe pas." });
-	}
-	else{ 
-		res.json(cpt);
-	} */
-	console.log(cpt);
-	res.json(cpt);
-});
-
+})
 //put pour modifier 
 app.put('/comptes/:id', function(req,res){
 	var id = parseInt(req.params.id);
@@ -204,6 +183,8 @@ app.put('/msg/:id', function(req,res)
 	//envoie la valeur du paramètre id au navigateur du client ayant fait l'appel
 	res.json(message.positionMessage(id));
 });
+
+
      
 
 
