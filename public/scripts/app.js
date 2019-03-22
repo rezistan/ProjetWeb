@@ -54,16 +54,17 @@ angular
 
     $scope.connexion = function() {
       MyFactoryCompte.get({ id: $scope.obj.id }, function(retour) {
-        $scope.resultat = retour;
-        switch(retour.type){
+        //var type;
+        switch(retour.role){
           case miagiste:
-            $state.go("collabo");
+            $state.go("question");
             break;
           case nonMiagiste:
-            $state.go("liste");
+            $state.go("offre");
             break;
           default:
-            $state.go("question");
+            console.log(retour);
+            $state.go("collabo");
             break;
         }
 
