@@ -77,7 +77,8 @@ myApp.config(function($stateProvider) {
     { 
       name: 'connexion', //ce qu'il faut appeler dans la page 
       url: '/connexion', // ce qui s'affiche dans l'url
-      templateUrl: '/pages/html/connexion.html'
+      templateUrl: '/pages/html/connexion.html',
+      controller: 'MainCtrl'
     },
     
     { 

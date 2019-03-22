@@ -28,7 +28,7 @@ var creerCompte = function(role,nom,prenom,adresse,mail,numtel) {
 		var acteur = new Acteur(role,nom,prenom,adresse,mail,numtel);
 		//on l'ajoute a la liste des Comptes
 		listeComptes[idActeur-1] = acteur;
-		console.log(listeComptes);
+		//console.log(listeComptes);
 		classerCompte(acteur);
 		return acteur.id;
     }
@@ -134,14 +134,6 @@ var listeDesComptes= function(typeDeCompte){
 		default:
 			return listeComptes;
 	}
-	/*
-	if (typeDeCompte === miagiste){
-		return listeMiagiste
-	}
-	else if (typeDeCompte === nonMiagiste)
-		return listeNonMiagiste
-	else return listeComptes
-		*/
 }
 // les 4 fonctions exportées
 exports.creerCompte = creerCompte;
