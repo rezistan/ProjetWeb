@@ -22,7 +22,7 @@ var proposerOffre = function(type,nomSociete,sujet,adresse,mail,tel){
 	listeOffres.push(offre);
 	//si tu met retourne offre simplement il va creer la chose mais il va pas te retourner le loffre creer il faut retourne lid de loffre nouvellemnt créer
 	return offre.id;
-	}
+}
 	
 	/*if (typeof listeOffres[idOffre] === 'undefined') {
 		//on le cree

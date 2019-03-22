@@ -1,0 +1,32 @@
+<h1>Ajouter une Offre</h1>
+		<div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Type</label>
+          </div>
+            <select class="custom-select" type="button" ng-model="obj.type">
+                <option class="dropdown-item" type="button">Stage</option>
+                <option class="dropdown-item" type="button">Alternance</option>
+            </select>
+        </div>
+        <div>
+            <label for="name">Nom Société :</label>
+            <input type="text" class="form-control" ng-model="obj.nomSociete">
+        </div>
+        <div>
+            <label for="name">Sujet :</label>
+            <input type="text" class="form-control" ng-model="obj.sujet">
+        </div>
+        <div>
+            <label for="adresse">Adresse :</label>
+            <input type="text" class="form-control"  ng-model="obj.adresse">
+        </div>
+        <div>
+            <label for="mail">Adresse mail:</label>
+            <input type="email" class="form-control" ng-model="obj.mail">
+        </div>
+        <div>
+            <label for="name">Téléphone :</label>
+            <input type="number" class="form-control" ng-model="obj.tel">
+        </div>
+        <br>
+    <button class="btn btn-primary" ng-click="creerOffre()">Valider</button><br>

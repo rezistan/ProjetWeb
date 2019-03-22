@@ -72,6 +72,16 @@ var lireMsgFiltre= function(){
 	}
 	return listeMsgFiltre;
 }
+
+var messagesAuteur = function(idAuteur){
+	listeMsgAuteur = [];
+	for(var mess in listeMessages){
+		if(mess.idAuteur === idAuteur){
+			listeMsgAuteur.push(mess);
+		}
+	}
+	return listeMsgAuteur;
+}
 /*
 poserQuestion(1, "Ouais ouais ouais");
 var q2 = poserQuestion(2, "Ouais ouais ouais");

@@ -130,7 +130,7 @@ app.delete ('/comptes/:id', function (req,res){
 */ 
 
 //creation d'une offre 
-app.post('/moffre/', function(req,res)
+app.post('/offre/', function(req,res)
 {
 	console.log(req.body);
 
@@ -145,22 +145,23 @@ app.post('/moffre/', function(req,res)
 
 });
 
-app.get('/moffre/:id', function(req, res)
+/*app.get('/offre/:id', function(req, res)
 {
 	// affiche la valeur du paramètre id sur la console de node
 	console.log(req.params.id) ;
 	//tu va choper le compte dont le lien est passé dans lurl 
 	var cpt = offre.positionDeLOffre(req.params.id);
 	if(cpt===false){ 
-		res.status(404).send('cette offre :  '+req.params.id+ ' est inexistant'); //http status404 // cest objet vide dans position du compte 
+		//res.status(404).send('cette offre :  '+req.params.id+ ' est inexistant'); //http status404 // cest objet vide dans position du compte 
+		res.json(offre.voirOffres());
 	}
 	else{ 
 		res.json(cpt);
 	}
 
 });
-
-app.get('/moffre/', function(req, res)
+/*
+app.get('/offre/', function(req, res)
 {
 	// affiche la valeur du paramètre id sur la console de node
 	var cpt = offre.voirOffres();

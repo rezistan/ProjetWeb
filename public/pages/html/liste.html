@@ -1,18 +1,29 @@
-<h1>SUJETS STAGE/ALTERNANCE</h1>
+<h1>Offres STAGE/ALTERNANCE</h1>
 	 <form>
 	 <div class="list-group">
-
+    Offres : {{offres}}
      <table class="table">
       <thead>
       <tr>
-          <th scope="col">Id</th>
           <th scope="col">Type</th>
-          <th scope="col">Nom</th>
+          <th scope="col">Nom Société</th>
           <th scope="col">Sujet</th>
           <th scope="col">Adresse</th>
           <th scope="col">Mail</th>
           <th scope="col">Tel</th>
       </tr>
+
+      <ul ng-repeat="of in offres">
+        <tr>
+            <th scope="col">{{of.type}}</th>
+            <th scope="col">{{of.nomSociete}}</th>
+            <th scope="col">{{of.sujet}}</th>
+            <th scope="col">{{of.adresse}}</th>
+            <th scope="col">{{of.mail}}</th>
+            <th scope="col">{{of.tel}}</th>
+        </tr>
+      </ul>
+      
       </thead>
       </table>
 

@@ -5,7 +5,8 @@
     	<label for="Identifiant">Votre identifiant</label><br>
 	    <input type="identifiant" class="form-control" id="identifiant" ng-model="obj.id" placeholder="Enter identifiant" required>
 
+    <p style="color: red">{{resultat}}</p>
+    
   </div>
     <button type="submit" class="btn btn-primary"  ng-click="connexion()" >Valider</button>
-    <p>Resultat : {{resultat | json}}</p>
 	 </form>

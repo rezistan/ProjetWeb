@@ -2,6 +2,7 @@
 
 var miagiste = 'Miagiste';
 var nonMiagiste = 'Non miagiste';
+var collabo = 'Collaborateur';
 
 /**
  * @ngdoc overview
@@ -11,8 +12,7 @@ var nonMiagiste = 'Non miagiste';
  *
  * Main module of the application.
  */
-angular
-  .module('projetWeb', [
+angular.module('projetWeb', [
     'ngResource'
   ])
   .factory('MyFactoryCompte', function ($resource) {
@@ -26,6 +26,11 @@ angular
   .controller('MainCtrl',
   function ($scope, $state, MyFactoryCompte) {
     $scope.resultat = '';
+
+    $scope.voirOffres = function(){
+      alert("tu t'es gouré madafuck");
+    };
+
     $scope.creerCompte = function() {
       // les o
       var objToSave = new MyFactoryCompte();
@@ -57,14 +62,17 @@ angular
         //var type;
         switch(retour.role){
           case miagiste:
-            $state.go("question");
+            $state.go("miagiste");
             break;
           case nonMiagiste:
-            $state.go("offre");
+            $state.go("nonMiagiste");
+            break;
+          case collabo:
+            $state.go("collabo");
             break;
           default:
-            console.log(retour);
-            $state.go("collabo");
+            $scope.resultat = "Identifiant inexistant !";
+            $state.go("connexion");  
             break;
         }
 
@@ -84,6 +92,54 @@ angular
     }
 
 
+  })
+  .factory('MyFactoryOffre', function ($resource) {
+    // ce qui est important c'est le mot 'id' qui doit être le meme partout car c'est le parametre 
+     return $resource('http://localhost:3000/offre/', {
+        update: {
+          method: 'PUT' // this method issues a PUT request
+        }
+      });
+  })
+  .controller('OffreCtrl',
+  function ($scope, $state, MyFactoryOffre) {
+    $scope.resultat = '';
+    $scope.creerOffre = function() {
+      var objToSave = new MyFactoryOffre();
+
+      objToSave.type = $scope.obj.type;
+      objToSave.nomSociete = $scope.obj.nomSociete;
+      objToSave.sujet = $scope.obj.sujet;
+      objToSave.adresse = $scope.obj.adresse;
+      objToSave.mail = $scope.obj.mail;
+      objToSave.tel = $scope.obj.tel;
+      //enregistrement
+      objToSave.$save(function(savedObj) {
+        $scope.resultat = savedObj;
+       }, function(error) {
+        $scope.resultat = error.data.error;
+       });
+       $state.go("offre");
+    };
+
+    $scope.position = function() {
+      MyFactoryOffre.get({ id: $scope.obj.id }, function(retour) {
+        $scope.resultat = retour;
+      }, function(error) {
+        $scope.resultat = error.data.error;
+       });
+    };
+
+    $scope.voirOffres = function() {
+      MyFactoryOffre.get(function(retour) {
+        alert(retour);
+        $state.go("offre");
+        $scope.offres = retour;
+      }, function(error) {
+        $scope.offres = error.data.error;
+       });
+    };
+
   });
 
 var myApp = angular.module('ficCentral', ['ui.router']);
@@ -96,7 +152,8 @@ myApp.config(function($stateProvider) {
       name: 'collabo',
       url: '/collabo',
       // Using component: instead of template:
-      templateUrl: '/pages/html/collaborateurs.html'
+      templateUrl: '/pages/html/collaborateurs.html',
+      controller: 'MainCtrl'
     },
     
     { 
@@ -109,19 +166,22 @@ myApp.config(function($stateProvider) {
     { 
       name: 'offre', 
       url: '/offre', 
-      templateUrl: '/pages/html/liste.html'
+      templateUrl: '/pages/html/liste.html',
+      controller: 'OffreCtrl'
     },
     
     { 
       name: 'question', 
       url: '/question', 
-      templateUrl: '/pages/html/question.html'
+      templateUrl: '/pages/html/question.html',
+      controller: 'MainCtrl'
     },
     
     { 
       name: 'repMessage', 
       url: '/repMessage', 
-      templateUrl: '/pages/html/repMessage.html'
+      templateUrl: '/pages/html/repMessage.html',
+      controller: 'MainCtrl'
     },
     
     { 
@@ -129,6 +189,27 @@ myApp.config(function($stateProvider) {
       url: '/inscription', 
       templateUrl: '/pages/html/inscription.html',
       controller: 'MainCtrl'
+    },
+    
+    { 
+      name: 'miagiste', 
+      url: '/miagiste', 
+      templateUrl: '/pages/html/miagiste.html',
+      controller: 'MainCtrl'
+    },
+    
+    { 
+      name: 'nonMiagiste', 
+      url: '/nonMiagiste', 
+      templateUrl: '/pages/html/nonMiagiste.html',
+      controller: 'MainCtrl'
+    },
+    
+    { 
+      name: 'ajoutOffre', 
+      url: '/ajoutOffre', 
+      templateUrl: '/pages/html/ajoutOffre.html',
+      controller: 'OffreCtrl'
     },
     
     { 
