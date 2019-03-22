@@ -27,10 +27,6 @@ angular.module('projetWeb', [
   function ($scope, $state, MyFactoryCompte) {
     $scope.resultat = '';
 
-    $scope.voirOffres = function(){
-      alert("tu t'es gouré madafuck");
-    };
-
     $scope.creerCompte = function() {
       // les o
       var objToSave = new MyFactoryCompte();
@@ -102,7 +98,7 @@ angular.module('projetWeb', [
       });
   })
   .controller('OffreCtrl',
-  function ($scope, $state, MyFactoryOffre) {
+  function ($scope, $state, $rootScope, MyFactoryOffre) {
     $scope.resultat = '';
     $scope.creerOffre = function() {
       var objToSave = new MyFactoryOffre();
@@ -119,7 +115,7 @@ angular.module('projetWeb', [
        }, function(error) {
         $scope.resultat = error.data.error;
        });
-       $state.go("offre");
+       //$state.go("offre");
     };
 
     $scope.position = function() {
@@ -132,11 +128,11 @@ angular.module('projetWeb', [
 
     $scope.voirOffres = function() {
       MyFactoryOffre.get(function(retour) {
-        alert(retour);
+        $rootScope.offres = retour;
         $state.go("offre");
-        $scope.offres = retour;
+        //alert(JSON.stringify($scope.offres));
       }, function(error) {
-        $scope.offres = error.data.error;
+        $scope.offres = error;
        });
     };
 

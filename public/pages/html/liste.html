@@ -1,8 +1,9 @@
 <h1>Offres STAGE/ALTERNANCE</h1>
+<div ng-controller="OffreCtrl">
 	 <form>
 	 <div class="list-group">
-    Offres : {{offres}}
-     <table class="table">
+    Offres : {{offres | json}}
+   <table class="table">
       <thead>
       <tr>
           <th scope="col">Type</th>
@@ -12,20 +13,17 @@
           <th scope="col">Mail</th>
           <th scope="col">Tel</th>
       </tr>
-
-      <ul ng-repeat="of in offres">
-        <tr>
-            <th scope="col">{{of.type}}</th>
-            <th scope="col">{{of.nomSociete}}</th>
-            <th scope="col">{{of.sujet}}</th>
-            <th scope="col">{{of.adresse}}</th>
-            <th scope="col">{{of.mail}}</th>
-            <th scope="col">{{of.tel}}</th>
-        </tr>
-      </ul>
-      
       </thead>
-      </table>
+      <tr ng-repeat="of in offres">{{ of }}
+          <th scope="col">{{ of.type }}</th>
+          <th scope="col">{{ of.nomSociete }}</th>
+          <th scope="col">{{ of.sujet }}</th>
+          <th scope="col">{{ of.adresse }}</th>
+          <th scope="col">{{ of.mail }}</th>
+          <th scope="col">{{ of.tel }}</th>
+      </tr>      
+    </table>
 
   </div>
   </form>
+</div>

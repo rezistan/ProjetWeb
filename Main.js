@@ -145,7 +145,8 @@ app.post('/offre/', function(req,res)
 
 });
 
-/*app.get('/offre/:id', function(req, res)
+/*
+app.get('/offre/:id', function(req, res)
 {
 	// affiche la valeur du paramètre id sur la console de node
 	console.log(req.params.id) ;
@@ -160,7 +161,8 @@ app.post('/offre/', function(req,res)
 	}
 
 });
-/*
+*/
+
 app.get('/offre/', function(req, res)
 {
 	// affiche la valeur du paramètre id sur la console de node
