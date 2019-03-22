@@ -48,7 +48,7 @@ express.static(__dirname + '/bower_components'));
 app.get('/comptes/:id',function(req,res)
 {
 	//console.log(req.query.typecompte);
-	if(req.params.id !== 'undefined'){
+	if(req.params.id !== undefined){
 		var cpt = acteur.positionDuCompte(req.params.id);
 		if(cpt===false){ 
 			//res.status(404).send('Compte '+req.params.id+ ' inexistant'); //http status404 // cest objet vide dans position du compte 

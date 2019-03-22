@@ -1,5 +1,8 @@
 'use strict';
 
+var miagiste = 'Miagiste';
+var nonMiagiste = 'Non miagiste';
+
 /**
  * @ngdoc overview
  * @name tp2App
@@ -21,7 +24,7 @@ angular
       });
   })
   .controller('MainCtrl',
-  function ($scope, MyFactoryCompte) {
+  function ($scope, $state, MyFactoryCompte) {
     $scope.resultat = '';
     $scope.creerCompte = function() {
       // les o
@@ -33,6 +36,7 @@ angular
       objToSave.adresse = $scope.obj.adresse;
       objToSave.mail = $scope.obj.mail;
       objToSave.telephone = $scope.obj.telephone;
+      //enregistrement
       objToSave.$save(function(savedObj) {
         $scope.resultat = savedObj;
        }, function(error) {
@@ -43,6 +47,26 @@ angular
     $scope.position = function() {
       MyFactoryCompte.get({ id: $scope.obj.id }, function(retour) {
         $scope.resultat = retour;
+      }, function(error) {
+        $scope.resultat = error.data.error;
+       });
+    };
+
+    $scope.connexion = function() {
+      MyFactoryCompte.get({ id: $scope.obj.id }, function(retour) {
+        $scope.resultat = retour;
+        switch(retour.type){
+          case miagiste:
+            $state.go("collabo");
+            break;
+          case nonMiagiste:
+            $state.go("liste");
+            break;
+          default:
+            $state.go("question");
+            break;
+        }
+
       }, function(error) {
         $scope.resultat = error.data.error;
        });
