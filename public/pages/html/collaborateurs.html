@@ -2,10 +2,15 @@
 <div ng-controller="OffreCtrl">
     <button ng-click="voirOffres()" ui-sref-active="active" class="btn btn-primary" >Liste offres</button><br>
     <button ui-sref="question" ui-sref-active="active" class="btn btn-primary" >Envoyer un message</button><br>
-    <button ui-sref="listeQuestions" ui-sref-active="active" class="btn btn-primary" >Liste de mes questions</button><br>
+    <button ui-sref="listeQuestions" ui-sref-active="active" class="btn btn-primary" >Liste des questions</button><br>
     <button ui-sref="ajoutOffre" ui-sref-active="active" class="btn btn-primary" >Ajouter une offre</button><br>
+
 </div>
-	 <h1>Liste des Profils non Miagiste</h1>
+<div ng-controller="MainCtrl">
+      <button ui-sref="userListe()" ui-sref-active="active" class="btn btn-primary" >Liste des profils</button><br>
+
+
+	 <!--<h1>Liste des Profils non Miagiste</h1>
 	 <form>
       <div class="container">
       <div class="row">
@@ -45,7 +50,7 @@
       </thead>
     </table>
   
-    
+    -->
 
   <a href="/">
                 <button type="button" class="btn btn-dark">Retour</button>

@@ -24,7 +24,7 @@ angular.module('projetWeb', [
       });
   })
   .controller('MainCtrl',
-  function ($scope, $state, MyFactoryCompte) {
+  function ($scope, $state, $rootScope, MyFactoryCompte) {
     $scope.resultat = '';
 
     $scope.creerCompte = function() {
@@ -45,14 +45,14 @@ angular.module('projetWeb', [
        });
     };
 
-    $scope.position = function() {
+   /* $scope.position = function() {
       MyFactoryCompte.get({ id: $scope.obj.id }, function(retour) {
         $scope.resultat = retour;
       }, function(error) {
         $scope.resultat = error.data.error;
        });
     };
-
+  */
     $scope.connexion = function() {
       MyFactoryCompte.get({ id: $scope.obj.id }, function(retour) {
         //var type;
@@ -74,6 +74,16 @@ angular.module('projetWeb', [
 
       }, function(error) {
         $scope.resultat = error.data.error;
+       });
+    };
+    $scope.userListe = function() {
+      MyFactoryOffre.get({ id: $scope.obj.id }, function(retour) {
+        $rootScope.miagistes = retour.role;
+        $rootScope.nonMiagistes=retour.role;
+        $state.go("listeUtilisateur");
+        alert(JSON.stringify($rootScope.miagistes));
+      }, function(error) {
+        $scope.offres = error;
        });
     };
 
@@ -206,6 +216,13 @@ myApp.config(function($stateProvider) {
       url: '/ajoutOffre', 
       templateUrl: '/pages/html/ajoutOffre.html',
       controller: 'OffreCtrl'
+    },
+
+    { 
+      name: 'listeUtilisateur', 
+      url: '/listeUtilisateur', 
+      templateUrl: '/pages/html/listeUtilisateur.html',
+      controller: 'MainCtrl'
     },
     
     { 
