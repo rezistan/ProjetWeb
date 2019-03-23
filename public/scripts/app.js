@@ -115,7 +115,7 @@ angular.module('projetWeb', [
   })
   .factory('MyFactoryOffre', function ($resource) {
     // ce qui est important c'est le mot 'id' qui doit être le meme partout car c'est le parametre 
-     return $resource('http://localhost:3000/offre/', {
+      return $resource('http://localhost:3000/msg/:id', { id: '@_id' }, {
         update: {
           method: 'PUT' // this method issues a PUT request
         }
@@ -143,7 +143,7 @@ angular.module('projetWeb', [
     };
 
     $scope.position = function() {
-      MyFactoryOffre.get({ id: $scope.obj.id }, function(retour) {
+      MyFactoryMessage.get({ id: $scope.obj.id }, function(retour) {
         $scope.resultat = retour;
       }, function(error) {
         $scope.resultat = error.data.error;
@@ -173,7 +173,56 @@ angular.module('projetWeb', [
        });
     };
     */
+  })
+  .factory('MyFactoryMessage', function ($resource) {
+    // ce qui est important c'est le mot 'id' qui doit être le meme partout car c'est le parametre 
+     return $resource('http://localhost:3000/msg/', {
+        update: {
+          method: 'PUT' // this method issues a PUT request
+        }
+      });
+  })
+  .controller('MessageCtrl',
+  function ($scope, $state, $rootScope, MyFactoryMessage) {
+    $scope.resultat = '';
+    $scope.creerMsg = function() {
+      var objToSave = new MyFactoryMessage();
+
+      objToSave.auteur = JSON.parse(localStorage.getItem('idSession'));
+      objToSave.contenu = $scope.obj.contenu;
+      
+      //enregistrement
+      objToSave.$save(function(savedObj) {
+        $scope.resultat = savedObj;
+       }, function(error) {
+        $scope.resultat = error.data.error;
+       });
+       //$state.go("offre");
+    };
+
+    $scope.position = function() {
+      MyFactoryMessage.get({ id: $scope.obj.id }, function(retour) {
+        $scope.resultat = retour;
+      }, function(error) {
+        $scope.resultat = error.data.error;
+       });
+    };
+
+    
+
+    /*
+    $scope.voirOffresId = function({ id: $scope.obj.id }, idSession) {
+      MyFactoryOffre.get(function(retour) {
+        $rootScope.offres = retour;
+        $state.go("offre");
+        //alert(JSON.stringify($scope.offres));
+      }, function(error) {
+        $scope.offres = error;
+       });
+    };
+    */
   });
+
 
 var myApp = angular.module('ficCentral', ['ui.router']);
 
@@ -207,7 +256,7 @@ myApp.config(function($stateProvider) {
       name: 'question', 
       url: '/question', 
       templateUrl: '/pages/html/question.html',
-      controller: 'MainCtrl'
+      controller: 'MessageCtrl'
     },
     
     { 
@@ -251,7 +300,12 @@ myApp.config(function($stateProvider) {
       templateUrl: '/pages/html/listeUtilisateur.html',
       controller: 'MainCtrl'
     },
-    
+     { 
+      name: 'listeQuestion', 
+      url: '/listeQuestion', 
+      templateUrl: '/pages/html/listeQuestion.html',
+      controller: 'MessageCtrl'
+    },
     { 
       name: 'index', 
       url: '/index', 
