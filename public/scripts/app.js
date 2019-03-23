@@ -77,15 +77,28 @@ angular.module('projetWeb', [
       });
     };
     $scope.userListe = function() {
-      MyFactoryOffre.get({ id: $scope.obj.id }, function(retour) {
-        $rootScope.miagistes = retour.role;
-        $rootScope.nonMiagistes=retour.role;
+            
+      MyFactoryCompte.get({id: nonMiagiste,miagiste},function(retour) {
+        //alert(JSON.stringify(retour));
+        localStorage.setItem('nonMiagistes', JSON.stringify(retour));
+        $rootScope.nonMiagistes = JSON.parse(localStorage.getItem('nonMiagistes'));
         $state.go("listeUtilisateur");
-        alert(JSON.stringify($rootScope.miagistes));
       }, function(error) {
-        $scope.offres = error;
+        //alert(error);
+        $scope.nonMiagistes = error;
+       });
+      MyFactoryCompte.get({id:miagiste},function(retouri) {
+        //alert(JSON.stringify(retouri));
+        localStorage.setItem('miagistes', JSON.stringify(retouri));
+        $rootScope.miagistes = JSON.parse(localStorage.getItem('miagistes'));
+        //$state.go("listeUtilisateur");
+      }, function(error) {
+        //alert(error);
+        $scope.miagistes = error;
        });
     };
+
+
 
     $scope.modifier = function(){
       /*var obj = { id : $scope.obj.id, role : $scope.obj.role, nom :$scope.obj.nom, prenom : $scope.obj.prenom, mail : $scope.obj.mail,
