@@ -1,29 +1,27 @@
 <h1>Offres STAGE/ALTERNANCE</h1>
 <div ng-controller="OffreCtrl">
-	 <form>
-	 <div class="list-group">
-    Offres : {{offres | json}}
-   <table class="table">
-      <thead>
-      <tr>
-          <th scope="col">Type</th>
-          <th scope="col">Nom Société</th>
-          <th scope="col">Sujet</th>
-          <th scope="col">Adresse</th>
-          <th scope="col">Mail</th>
-          <th scope="col">Tel</th>
-      </tr>
-      </thead>
-      <tr ng-repeat="of in offres">{{ of }}
-          <th scope="col">{{ of.type }}</th>
-          <th scope="col">{{ of.nomSociete }}</th>
-          <th scope="col">{{ of.sujet }}</th>
-          <th scope="col">{{ of.adresse }}</th>
-          <th scope="col">{{ of.mail }}</th>
-          <th scope="col">{{ of.tel }}</th>
-      </tr>      
-    </table>
-
-  </div>
+  <form>
+    <div class="list-group">
+      <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Type</th>
+            <th scope="col">Nom Société</th>
+            <th scope="col">Sujet</th>
+            <th scope="col">Adresse</th>
+            <th scope="col">Mail</th>
+            <th scope="col">Tel</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="of in offres">{{ of }}
+            <td scope="col">{{ of.type }}</td>
+            <td scope="col">{{ of.nomSociete }}</td>
+            <td scope="col">{{ of.sujet }}</td>
+            <td scope="col">{{ of.adresse }}</td>
+            <td scope="col">{{ of.mail }}</td>
+            <td scope="col">{{ of.tel }}</td>
+        </tr>      
+      </table>
+    </div>
   </form>
 </div>
