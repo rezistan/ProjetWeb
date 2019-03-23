@@ -13,7 +13,7 @@ var collabo = 'Collaborateur';
  * Main module of the application.
  */
 angular.module('projetWeb', [
-    'ngResource'
+    'ngResource', 'ngStorage'
   ])
   .factory('MyFactoryCompte', function ($resource) {
     // ce qui est important c'est le mot 'id' qui doit être le meme partout car c'est le parametre 
@@ -71,10 +71,10 @@ angular.module('projetWeb', [
             $state.go("connexion");  
             break;
         }
-
+        localStorage.setItem('idSession', retour.id);
       }, function(error) {
         $scope.resultat = error.data.error;
-       });
+      });
     };
 
     $scope.modifier = function(){
@@ -85,8 +85,7 @@ angular.module('projetWeb', [
       MyFactoryCompte.update({id:$scope.obj.id}, $scope.obj, function(savedObj){
         $scope.resultat=savedObj;  
       });
-    }
-
+    };
 
   })
   .factory('MyFactoryOffre', function ($resource) {
@@ -128,6 +127,19 @@ angular.module('projetWeb', [
 
     $scope.voirOffres = function() {
       MyFactoryOffre.get(function(retour) {
+        //alert(JSON.stringify(retour));
+        localStorage.setItem('offres', JSON.stringify(retour));
+        $rootScope.offres = JSON.parse(localStorage.getItem('offres'));
+        $state.go("offre");
+      }, function(error) {
+        //alert(error);
+        $scope.offres = error;
+       });
+    };
+
+    /*
+    $scope.voirOffresId = function({ id: $scope.obj.id }, idSession) {
+      MyFactoryOffre.get(function(retour) {
         $rootScope.offres = retour;
         $state.go("offre");
         //alert(JSON.stringify($scope.offres));
@@ -135,7 +147,7 @@ angular.module('projetWeb', [
         $scope.offres = error;
        });
     };
-
+    */
   });
 
 var myApp = angular.module('ficCentral', ['ui.router']);
