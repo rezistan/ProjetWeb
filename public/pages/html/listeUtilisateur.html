@@ -1,0 +1,70 @@
+ Basculer un compte 
+<div ng-controller="MainCtrl">
+     <p>id <input type="text" ng-model="obj.id"/></p>
+
+    <button ng-click="modifier()">Basculer un compte</button>
+</div>
+
+ <h1>Liste des Profils non Miagiste</h1>
+<div ng-controller="MainCtrl">
+   <form>
+   <div class="list-group">
+    
+   <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Id</th>
+         <th scope="col">profil</th>
+          <th scope="col">Nom </th>
+          <th scope="col">prenom</th>
+          <th scope="col">Adresse</th>
+          <th scope="col">Mail</th>
+          <th scope="col">Telephone</th>
+      </tr>
+      </thead>
+      <tr ng-repeat="nonMiagistes in nonMiagistes">
+          <th scope="col">{{ nonMiagistes.id }}</th>
+          <th scope="col">{{ nonMiagistes.profil }}</th>
+          <th scope="col">{{ nonMiagistes.nom }}</th>
+          <th scope="col">{{ nonMiagistes.prenom }}</th>
+          <th scope="col">{{ nonMiagistes.adresse }}</th>
+          <th scope="col">{{ nonMiagistes.mail }}</th>
+          <th scope="col">{{ nonMiagistes.numtel }}</th>
+      </tr>      
+    </table>
+
+  </div>
+  </form>
+</div>
+
+<h1>Liste des pofils Miagistes</h1>
+<div ng-controller="MainCtrl">
+   <form>
+   <div class="list-group">
+    
+   <table class="table">
+      <thead>
+      <tr>
+          <th scope="col">Id</th>
+          <th scope="col">profil</th>
+          <th scope="col">Nom </th>
+          <th scope="col">prenom</th>
+          <th scope="col">Adresse</th>
+          <th scope="col">Mail</th>
+          <th scope="col">Telephone</th>
+      </tr>
+      </thead>
+      <tr ng-repeat="miagistes in miagistes">
+          <th scope="col">{{ miagistes.id }}</th>
+          <th scope="col">{{ miagistes.profil }}</th>
+          <th scope="col">{{ miagistes.nom }}</th>
+          <th scope="col">{{ miagistes.prenom }}</th>
+          <th scope="col">{{ miagistes.adresse }}</th>
+          <th scope="col">{{ miagistes.mail }}</th>
+          <th scope="col">{{ miagistes.numtel }}</th>
+      </tr>      
+    </table>
+
+  </div>
+  </form>
+</div>
