@@ -1,0 +1,30 @@
+<h1>Ma liste de question</h1>
+<div ng-controller="MessageCtrl">
+
+
+     <p>id <input type="text" ng-model="obj.id"/></p>
+
+    <button ng-click="position()">Afficher le msg</button>
+</div>
+
+  <form>
+    <div class="list-group">
+      <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Question</th>
+            <th scope="col">Reponse</th>
+
+        </tr>
+        </thead>
+        <tr ng-repeat="messages in messages">{{ messages }}
+            <td scope="col">{{ messages.auteur }}</td>
+            <td scope="col">{{ messages.contenu }}</td>
+            <td scope="col">{{ messages.sujet }}</td>
+           
+        </tr>      
+      </table>
+    </div>
+  </form>
+</div>
