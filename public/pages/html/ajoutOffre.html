@@ -28,5 +28,8 @@
             <label for="name">Téléphone :</label>
             <input type="number" class="form-control" ng-model="obj.tel">
         </div>
+    	<p style="color: green">{{notif}}</p>
         <br>
-    <button class="btn btn-primary" ng-click="creerOffre()">Valider</button><br>
+    <button class="btn btn-primary" ng-click="creerOffre()">Valider</button>
+    <button ui-sref="collabo" ui-sref-active="active" class="btn btn-secondary">Retour</button><br><br>
+

@@ -72,6 +72,7 @@ angular.module('projetWeb', [
             break;
         }
         localStorage.setItem('idSession', retour.id);
+        $rootScope.idSession = localStorage.getItem('idSession');
       }, function(error) {
         $scope.resultat = error.data.error;
       });
@@ -115,7 +116,7 @@ angular.module('projetWeb', [
   })
   .factory('MyFactoryOffre', function ($resource) {
     // ce qui est important c'est le mot 'id' qui doit être le meme partout car c'est le parametre 
-      return $resource('http://localhost:3000/msg/:id', { id: '@_id' }, {
+      return $resource('http://localhost:3000/offre/:id', { id: '@_id' }, {
         update: {
           method: 'PUT' // this method issues a PUT request
         }
@@ -139,7 +140,8 @@ angular.module('projetWeb', [
        }, function(error) {
         $scope.resultat = error.data.error;
        });
-       //$state.go("offre");
+      $scope.notif = 'Offre créée !'
+      $state.go("ajoutOffre");
     };
 
     $scope.position = function() {
@@ -208,19 +210,18 @@ angular.module('projetWeb', [
        });
     };
 
-    
-
-    /*
-    $scope.voirOffresId = function({ id: $scope.obj.id }, idSession) {
-      MyFactoryOffre.get(function(retour) {
-        $rootScope.offres = retour;
-        $state.go("offre");
-        //alert(JSON.stringify($scope.offres));
+    $scope.voirQuestions = function() {
+      MyFactoryMessage.get(function(retour) {
+        //alert(JSON.stringify(retour));
+        localStorage.setItem('questions', JSON.stringify(retour));
+        $rootScope.questions = JSON.parse(localStorage.getItem('questions'));
+        $state.go("listeQuestion");
       }, function(error) {
-        $scope.offres = error;
+        //alert(JSON.stringify(error));
+        $scope.questions = error;
        });
     };
-    */
+
   });
 
 

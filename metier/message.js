@@ -54,7 +54,7 @@ var repondreQuestion = function(question, newReponse){
 *
 * Permet voir la liste des messages
 */
-var lireMsg= function(){
+var  	lireMsg= function(){
 	return listeMessages;
 }
 

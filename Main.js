@@ -170,7 +170,7 @@ app.get('/offre/', function(req, res)
 	//affiche la commande demande en reponse (quesquon va afficher dans la partie reponse)
 	console.log(cpt);
 	if(cpt===false){ 
-		res.status(404).send('cette offre :  '+req.params.id+ ' est inexistant'); //http status404 // cest objet vide dans position du compte 
+		res.status(404).send('cette offre :  '+req.params.id+ ' est inexistante'); //http status404 // cest objet vide dans position du compte 
 	}
 	else{ 
 		res.json(cpt);
@@ -202,6 +202,17 @@ app.get('/msg/:id', function(req,res)
 	var cpt = message.positionMessage(id);
 	if(cpt===false){ 
 		res.status(404).send('Ce message : '+req.params.id+ ' est inexistant'); //http status404 // cest objet vide dans position du compte 
+	}
+	else{ 
+		res.json(cpt);
+	}
+});
+
+app.get('/msg/', function(req,res)
+{
+	var cpt = message.lireMsg();
+	if(cpt===false){ 
+		res.status(404).send('Erreur de lecture des messages');
 	}
 	else{ 
 		res.json(cpt);

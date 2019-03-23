@@ -88,24 +88,6 @@ var basculerCompte = function(id){
 	}
 }
 
-//methode acces a la section dedié miagiste 
-var accesSection = function(id){
-	if(listeComptes[id] !== undefined){
-		if(listeComptes[id].role === miagiste){
-
-		}
-		else if(listeComptes[id].role === nonMiagiste) {
-
-		}
-		else{
-
-		}
-	}
-	else{
-		//Compte inexistant
-	}
-}
-
 /*
 creerCompte('non miagiste', 'nom1', 'prenom1', 'adresse', 'yfyjvh@cdc.com', '5678987654');
 creerCompte('non miagiste', 'nom2', 'prenom2', 'adresse', 'yfyjvh@cdc.com', '5678987654');
@@ -140,6 +122,5 @@ exports.creerCompte = creerCompte;
 exports.modifierCompte = modifierCompte;
 exports.classerCompte = classerCompte;
 exports.basculerCompte = basculerCompte;
-exports.accesSection = accesSection;
 exports.positionDuCompte = positionDuCompte;
 exports.listeDesComptes=listeDesComptes;
