@@ -76,6 +76,7 @@ angular.module('projetWeb', [
         $scope.resultat = error.data.error;
       });
     };
+
     $scope.userListe = function() {
             
       MyFactoryCompte.get({id: nonMiagiste,miagiste},function(retour) {
@@ -108,6 +109,7 @@ angular.module('projetWeb', [
       MyFactoryCompte.update({id:$scope.obj.id}, $scope.obj, function(savedObj){
         $scope.resultat=savedObj;  
       });
+      $scope.userListe();
     };
 
   })
