@@ -225,10 +225,8 @@ angular.module('projetWeb', [
     };
 
     $scope.modifier = function(idMess, reponseMess){
-      var obj = { id : idMess, reponse : reponseMess };
-
-      console.log(obj);
-      MyFactoryMessage.update({id:idMess}, obj, function(savedObj){
+      var obj = { id : idMess, act: '', reponse : reponseMess };
+      MyFactoryMessage.update({id: JSON.stringify(obj)}, obj,  function(savedObj){
         $scope.resultat=savedObj;  
       });
       $scope.repMessage();

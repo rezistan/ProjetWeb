@@ -231,10 +231,10 @@ app.get('/msg/', function(req,res)
 app.put('/msg/:id', function(req,res)
 {	
 	var params = JSON.parse(req.params.id);
+	//console.log(params);
 	var id = params.id;
-	var act = params.act;
 	var mes = message.positionMessage(id);
-	if(act === 'faq'){
+	if(params.act === 'faq'){
 		if(mes.faq){
 			message.retirerFaq(id);
 		}

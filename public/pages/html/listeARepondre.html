@@ -4,6 +4,7 @@
       <table class="table">
         <thead>
         <tr>
+            <th scope="col">Id</th>
             <th scope="col">Auteur</th>
             <th scope="col">Question</th>
             <th scope="col">Reponse</th>
@@ -11,6 +12,7 @@
         </tr>
         </thead>
         <tr ng-repeat="obj in questionsSR">
+            <td scope="col">{{ obj.id }}</td>
             <td scope="col">{{ obj.idAuteur }}</td>
             <td scope="col">{{ obj.contenu }}</td>
             <td scope="col">
