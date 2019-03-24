@@ -10,6 +10,7 @@ function Message(idAuteur,contenu,reponse){
 	this.horodatage = new Date();
 	this.contenu=contenu;
 	this.reponse=reponse;
+	this.faq = false;
 	/* Pour creer un message on fait un truc quuiu recuperer lid de lauteur 
 	le contenu et la reponse
 	*/ 	
@@ -83,6 +84,26 @@ var messagesAuteur = function(idAuteur){
 	console.log(listeMsgAuteur);
 	return listeMsgAuteur;
 }
+
+var ajouterFaq = function(id){
+	listeMessages[id].faq = true;
+}
+
+var retirerFaq = function(id){
+	listeMessages[id].faq = false;
+}
+
+var messagesFaq = function(idAuteur){
+	listeFaq = {};
+	for(var i=0; i<Object.keys(listeMessages).length; i++){
+		if(listeMessages[i].faq){
+			listeFaq[Object.keys(listeFaq).length] = listeMessages[i];
+		}
+	}
+	console.log(listeFaq);
+	return listeFaq;
+}
+
 /*
 poserQuestion(1, "Ouais ouais ouais");
 var q2 = poserQuestion(2, "Ouais ouais ouais");
@@ -97,3 +118,4 @@ exports.lireMsg = lireMsg;
 exports.lireMsgFiltre = lireMsgFiltre;
 exports.positionMessage = positionMessage;
 exports.messagesAuteur = messagesAuteur;
+exports.messagesFaq = messagesFaq;

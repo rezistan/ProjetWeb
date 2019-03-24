@@ -200,9 +200,23 @@ angular.module('projetWeb', [
 
     $scope.voirQuestions = function() {
       MyFactoryMessage.get(function(retour) {
-        //alert(JSON.stringify(retour));
-        localStorage.setItem('questions', JSON.stringify(retour));
+        //alert(JSON.stringify(retour[0]));
+        var questions = {};
+        var questionsFaq = {};
+        for(var i=0; i<Object.keys(retour).length; i++){
+          if(!retour[i].faq){
+            questions[Object.keys(questions).length] = retour[i];
+          }
+          else{
+            questionsFaq[Object.keys(questionsFaq).length] = retour[i];
+          }
+        }
+        localStorage.setItem('questions', JSON.stringify(questions));
         $rootScope.questions = JSON.parse(localStorage.getItem('questions'));
+
+        localStorage.setItem('questionsFaq', JSON.stringify(questionsFaq));
+        $rootScope.questionsFaq = JSON.parse(localStorage.getItem('questionsFaq'));
+
         $state.go("listeQuestion");
       }, function(error) {
         //alert(JSON.stringify(error));
@@ -211,9 +225,6 @@ angular.module('projetWeb', [
     };
 
     $scope.modifier = function(idMess, reponseMess){
-      /*var obj = { id : $scope.obj.id, role : $scope.obj.role, nom :$scope.obj.nom, prenom : $scope.obj.prenom, mail : $scope.obj.mail,
-       adresse : $scope.obj.adresse, telephone : $scope.obj.telephone }
-      obj.role= obj.role;*/
       var obj = { id : idMess, reponse : reponseMess }
 
       console.log(obj);
@@ -232,6 +243,30 @@ angular.module('projetWeb', [
         $scope.questionsSR = error;
        });
     };
+
+    $scope.voirFaq = function() {
+     MyFactoryMessage.get({ id: 'FAQ' }, function(retour) {
+        $rootScope.questions = retour;
+        $state.go("faq");
+        //alert(JSON.stringify($scope.questions));
+      }, function(error) {
+        $scope.questions = error;
+       });
+    };
+
+    $scope.addFAQ = function(idMess){
+      MyFactoryMessage.update({id:idMess}, function(savedObj){
+        $scope.resultat=savedObj;  
+      });
+      $scope.voirQuestions();
+    };
+
+    $scope.removeFaq = function(idMess){
+      MyFactoryMessage.update({id:idMess}, function(savedObj){
+        $scope.resultat=savedObj;  
+      });
+      $scope.voirQuestions();    };
+
 
   });
 
@@ -323,6 +358,13 @@ myApp.config(function($stateProvider) {
       name: 'listeARepondre', 
       url: '/listeARepondre', 
       templateUrl: '/pages/html/listeARepondre.html',
+      controller: 'MessageCtrl'
+    },
+
+     { 
+      name: 'faq', 
+      url: '/faq', 
+      templateUrl: '/pages/html/FAQ.html',
       controller: 'MessageCtrl'
     },
 

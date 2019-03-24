@@ -202,6 +202,9 @@ app.get('/msg/:id', function(req,res)
 	if(id === 'SR'){ //sans reponse
 		var cpt = message.lireMsgFiltre();
 	}
+	else if(id === 'FAQ'){
+		var cpt = message.messagesFaq();
+	}
 	else{ //message auteur
 		console.log(id);
 		var cpt = message.messagesAuteur(id);

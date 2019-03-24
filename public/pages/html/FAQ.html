@@ -1,4 +1,4 @@
-<h1>Liste de questions</h1>
+<h1>Foire aux questions</h1>
 <div ng-controller="MessageCtrl">
 
 <!--
@@ -17,7 +17,6 @@
             <th scope="col">Date</th>
             <th scope="col">Question</th>
             <th scope="col">Reponse</th>
-            <th scope="col"></th>
         </tr>
         </thead>
         <tr ng-repeat="message in questions">
@@ -26,20 +25,7 @@
             <td scope="col">{{ message.horodatage }}</td>
             <td scope="col">{{ message.contenu }}</td>
             <td scope="col">{{ message.reponse }}</td>
-            <td scope="col">
-                <button ng-click="addFAQ(message.id)" class="btn btn-primary">Ajouter à la FAQ</button>
-            </td>
-        </tr>
-        <tr ng-repeat="message in questionsFaq">
-            <td scope="col">{{ message.id }}</td>
-            <td scope="col">{{ message.idAuteur }}</td>
-            <td scope="col">{{ message.horodatage }}</td>
-            <td scope="col">{{ message.contenu }}</td>
-            <td scope="col">{{ message.reponse }}</td>
-            <td scope="col">
-                <button ng-click="removeFaq(message.id)" class="btn btn-primary">Retirer de la FAQ</button>
-            </td>
-        </tr>       
+        </tr>      
       </table>
     </div>
   </form>
