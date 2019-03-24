@@ -1,0 +1,25 @@
+<h1>Liste des messages sans réponse</h1>
+<div ng-controller="MessageCtrl">
+    <div class="list-group">
+      <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Auteur</th>
+            <th scope="col">Question</th>
+            <th scope="col">Reponse</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tr ng-repeat="obj in questionsSR">
+            <td scope="col">{{ obj.idAuteur }}</td>
+            <td scope="col">{{ obj.contenu }}</td>
+            <td scope="col">
+                <input type="text" name="reponse" id="Reponse"  ng-model="obj.reponse[$index]"/>
+            </td>
+            <td scope="col">
+                <button type="submit" ng-click="modifier(obj.id, obj.reponse[$index])" class="btn btn-primary">Répondre</button>
+            </td>
+        </tr>      
+      </table>
+    </div>
+</div>

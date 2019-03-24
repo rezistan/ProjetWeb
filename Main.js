@@ -199,7 +199,12 @@ app.post('/msg/', function(req,res)
 app.get('/msg/:id', function(req,res)
 {
 	var id = req.params.id;
-	var cpt = message.positionMessage(id);
+	if(id === 'SR'){ //sans reponse
+		var cpt = message.lireMsgFiltre();
+	}
+	else{
+		var cpt = message.positionMessage(id);
+	}
 	if(cpt===false){ 
 		res.status(404).send('Ce message : '+req.params.id+ ' est inexistant'); //http status404 // cest objet vide dans position du compte 
 	}

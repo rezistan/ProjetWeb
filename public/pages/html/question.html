@@ -3,14 +3,16 @@
 	
 	<form method="post" action="traitement.php" class="form-group">
         <div ng-controller="MessageCtrl">
-        <label for="nom">Nom :</label>
-        <input type="text" name="nom" id="nom" placeholder="Ex : Jean" size="30" maxlength="10" class="form-control"/><br>
-        <label for="nom">Prenom :</label>
-        <input type="text" name="Prenom" id="prenom" placeholder="Ex : DUPOND" size="30" maxlength="10" class="form-control"ng-model="obj.auteur"/></p>
-        <label for="Votre Message">Message: </label>
-        <textarea name="message" id="Message" rows="4" cols="70" class="form-control" ng-model="obj.contenu"></textarea><br>
-        <button type="button" ng-click="creerMsg()" class="btn btn-dark">Valider</button></br>
-       
-    <p>Resultat : {{resultat | json}}</p>
+            <!--   
+            <label for="nom">Nom :</label>
+            <input type="text" name="nom" id="nom" placeholder="Ex : Jean" size="30" maxlength="10" class="form-control"/><br>
+            <label for="nom">Prenom :</label>
+            <input type="text" name="Prenom" id="prenom" placeholder="Ex : DUPOND" size="30" maxlength="10" class="form-control"ng-model="obj.auteur"/></p>
+        -->
+            <label for="Votre Message">Message: </label>
+            <textarea name="message" id="Message" rows="4" cols="70" class="form-control" ng-model="obj.contenu"></textarea><br>
+            <button type="button" ng-click="creerMsg()" class="btn btn-dark">Valider</button></br>
+           
+            <!-- <p>Resultat : {{resultat | json}}</p> -->
      </div>
     </form>

@@ -221,19 +221,29 @@ angular.module('projetWeb', [
         $scope.questions = error;
        });
     };
-    $scope.modifier = function(){
+
+    $scope.modifier = function(idMess, reponseMess){
       /*var obj = { id : $scope.obj.id, role : $scope.obj.role, nom :$scope.obj.nom, prenom : $scope.obj.prenom, mail : $scope.obj.mail,
        adresse : $scope.obj.adresse, telephone : $scope.obj.telephone }
       obj.role= obj.role;*/
-            var obj = { id : $scope.obj.id, reponse : $scope.obj.reponse }
+      var obj = { id : idMess, reponse : reponseMess }
 
-      console.log($scope.obj);
-      MyFactoryMessage.update({id:$scope.obj.id }, obj, function(savedObj){
+      console.log(obj);
+      MyFactoryMessage.update({id:idMess}, obj, function(savedObj){
         $scope.resultat=savedObj;  
       });
-      
+      $scope.repMessage();
     };
 
+    $scope.repMessage = function() {
+      MyFactoryMessage.get({ id: 'SR' }, function(retour) {
+        $rootScope.questionsSR = retour;
+        $state.go("listeARepondre");
+        //alert(JSON.stringify($scope.questionsSR));
+      }, function(error) {
+        $scope.questionsSR = error;
+       });
+    };
 
   });
 
@@ -272,14 +282,7 @@ myApp.config(function($stateProvider) {
       templateUrl: '/pages/html/question.html',
       controller: 'MessageCtrl'
     },
-    
-    { 
-      name: 'repMessage', 
-      url: '/repMessage', 
-      templateUrl: '/pages/html/repMessage.html',
-      controller: 'MessageCtrl'
-    },
-    
+
     { 
       name: 'inscription', 
       url: '/inscription', 
@@ -320,6 +323,14 @@ myApp.config(function($stateProvider) {
       templateUrl: '/pages/html/listeQuestion.html',
       controller: 'MessageCtrl'
     },
+
+     { 
+      name: 'listeARepondre', 
+      url: '/listeARepondre', 
+      templateUrl: '/pages/html/listeARepondre.html',
+      controller: 'MessageCtrl'
+    },
+    
     { 
       name: 'index', 
       url: '/index', 
