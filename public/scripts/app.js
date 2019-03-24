@@ -178,7 +178,7 @@ angular.module('projetWeb', [
   })
   .factory('MyFactoryMessage', function ($resource) {
     // ce qui est important c'est le mot 'id' qui doit être le meme partout car c'est le parametre 
-     return $resource('http://localhost:3000/msg/', {
+     return $resource('http://localhost:3000/msg/:id', { id: '@_id' }, {
         update: {
           method: 'PUT' // this method issues a PUT request
         }
@@ -221,6 +221,19 @@ angular.module('projetWeb', [
         $scope.questions = error;
        });
     };
+    $scope.modifier = function(){
+      /*var obj = { id : $scope.obj.id, role : $scope.obj.role, nom :$scope.obj.nom, prenom : $scope.obj.prenom, mail : $scope.obj.mail,
+       adresse : $scope.obj.adresse, telephone : $scope.obj.telephone }
+      obj.role= obj.role;*/
+            var obj = { id : $scope.obj.id, reponse : $scope.obj.reponse }
+
+      console.log($scope.obj);
+      MyFactoryMessage.update({id:$scope.obj.id }, obj, function(savedObj){
+        $scope.resultat=savedObj;  
+      });
+      
+    };
+
 
   });
 
@@ -264,7 +277,7 @@ myApp.config(function($stateProvider) {
       name: 'repMessage', 
       url: '/repMessage', 
       templateUrl: '/pages/html/repMessage.html',
-      controller: 'MainCtrl'
+      controller: 'MessageCtrl'
     },
     
     { 

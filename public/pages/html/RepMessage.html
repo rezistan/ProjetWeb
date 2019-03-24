@@ -1,15 +1,12 @@
 	<h1>Repondre Message</h1>
-	<form>
-		<label for="nom">Nom :</label>
-        <type="text" name="nom" id="nom" placeholder="Ex : Zozo" size="30" maxlength="10" /><br>
-        <label for="nom">Prenom :</label>
-        <type="text" name="Prenom" id="prenom" placeholder="Ex : LOUIS" size="30" maxlength="10" /></p>
-        <label for="Votre Message">Message: </label>
-        <textarea name="message" id="Message" rows="4" cols="30"></textarea><br><br>
+	<form ng-controller="MessageCtrl">
+		
+        <label for="Votre Message">id: </label>
+        <textarea  ng-model="obj.id"></textarea><br><br>
 
         <label for="Votre Message">Reponse: </label>
-        <textarea name="reponse" id="Reponse" rows="4" cols="80"></textarea><br><br>
+        <textarea name="reponse" id="Reponse"  ng-model="obj.reponse"rows="4" cols="80"></textarea><br><br>
 
 		</div>
-    <button type="submit" class="btn btn-primary">Repondre</button>
+    <button type="submit" ng-click="modifier()" class="btn btn-primary">Repondre</button>
     </form>
