@@ -187,7 +187,7 @@ app.post('/msg/', function(req,res)
 {
 	console.log(req.body);
 
-	var auteur =req.body.auteur;
+	var auteur=req.body.auteur;
 	var contenu=req.body.contenu;
 	var msg= message.poserQuestion(auteur,contenu);
 	res.json(msg);
@@ -229,12 +229,24 @@ app.get('/msg/', function(req,res)
 });
 
 app.put('/msg/:id', function(req,res)
-{
-	var id = req.params.id;
+{	
+	var params = JSON.parse(req.params.id);
+	var id = params.id;
+	var act = params.act;
 	var mes = message.positionMessage(id);
-	var rep = req.body.reponse;
+	if(act === 'faq'){
+		if(mes.faq){
+			message.retirerFaq(id);
+		}
+		else{
+			message.ajouterFaq(id);
+		}
+	}
+	else{
+		var rep = req.body.reponse;
+		message.repondreQuestion(mes, rep);
+	}
 
-	message.repondreQuestion(mes, rep);
 	//envoie la valeur du paramètre id au navigateur du client ayant fait l'appel
 	res.json(message.positionMessage(id));
 });

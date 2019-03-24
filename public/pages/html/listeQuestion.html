@@ -1,12 +1,5 @@
 <h1>Liste de questions</h1>
 <div ng-controller="MessageCtrl">
-
-<!--
-     <p>id <input type="text" ng-model="obj.id"/></p>
-
-    <button ng-click="position()">Afficher le msg</button>
-  -->
-
   <form>
     <div class="list-group">
       <table class="table">
@@ -37,7 +30,7 @@
             <td scope="col">{{ message.contenu }}</td>
             <td scope="col">{{ message.reponse }}</td>
             <td scope="col">
-                <button ng-click="removeFaq(message.id)" class="btn btn-primary">Retirer de la FAQ</button>
+                <button ng-click="addFAQ(message.id)" class="btn btn-primary">Retirer de la FAQ</button>
             </td>
         </tr>       
       </table>

@@ -203,12 +203,12 @@ angular.module('projetWeb', [
         //alert(JSON.stringify(retour[0]));
         var questions = {};
         var questionsFaq = {};
-        for(var i=0; i<Object.keys(retour).length; i++){
-          if(!retour[i].faq){
-            questions[Object.keys(questions).length] = retour[i];
+        for(var q in retour){
+          if(retour[q].faq){ //si € a la faq
+            questionsFaq[Object.keys(questionsFaq).length] = retour[q];
           }
-          else{
-            questionsFaq[Object.keys(questionsFaq).length] = retour[i];
+          if(retour[q].faq === false){
+            questions[Object.keys(questions).length] = retour[q];
           }
         }
         localStorage.setItem('questions', JSON.stringify(questions));
@@ -225,7 +225,7 @@ angular.module('projetWeb', [
     };
 
     $scope.modifier = function(idMess, reponseMess){
-      var obj = { id : idMess, reponse : reponseMess }
+      var obj = { id : idMess, reponse : reponseMess };
 
       console.log(obj);
       MyFactoryMessage.update({id:idMess}, obj, function(savedObj){
@@ -246,26 +246,22 @@ angular.module('projetWeb', [
 
     $scope.voirFaq = function() {
      MyFactoryMessage.get({ id: 'FAQ' }, function(retour) {
-        $rootScope.questions = retour;
+        $rootScope.questionsFaq = retour;
         $state.go("faq");
         //alert(JSON.stringify($scope.questions));
       }, function(error) {
-        $scope.questions = error;
+        $scope.questionsFaq = error;
        });
     };
 
     $scope.addFAQ = function(idMess){
-      MyFactoryMessage.update({id:idMess}, function(savedObj){
-        $scope.resultat=savedObj;  
+      var obj = { id : idMess, act: 'faq' };
+      MyFactoryMessage.update({id: JSON.stringify(obj)}, obj,  function(savedObj){
+        $scope.resultat=savedObj;
+        console.log(savedObj);
       });
       $scope.voirQuestions();
     };
-
-    $scope.removeFaq = function(idMess){
-      MyFactoryMessage.update({id:idMess}, function(savedObj){
-        $scope.resultat=savedObj;  
-      });
-      $scope.voirQuestions();    };
 
 
   });
@@ -378,7 +374,9 @@ myApp.config(function($stateProvider) {
   states.forEach(function(state) {
     $stateProvider.state(state);
   });
-});
+}).config(['$qProvider', function ($qProvider) {
+    $qProvider.errorOnUnhandledRejections(false);
+}]);
 
 
 

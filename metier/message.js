@@ -87,6 +87,7 @@ var messagesAuteur = function(idAuteur){
 
 var ajouterFaq = function(id){
 	listeMessages[id].faq = true;
+	console.log(listeMessages[id]);
 }
 
 var retirerFaq = function(id){
@@ -119,3 +120,5 @@ exports.lireMsgFiltre = lireMsgFiltre;
 exports.positionMessage = positionMessage;
 exports.messagesAuteur = messagesAuteur;
 exports.messagesFaq = messagesFaq;
+exports.ajouterFaq = ajouterFaq;
+exports.retirerFaq = retirerFaq;
