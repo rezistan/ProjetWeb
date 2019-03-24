@@ -11,7 +11,6 @@
   </head >
   <body class="container">
   <div ng-controller="MainCtrl">
-    {{ idSession }}
  <!--  
     <p>Role<input type="text" ng-model="obj.role"/></p>
     <p>nom <input type="text" ng-model="obj.nom"/></p>
@@ -36,7 +35,7 @@
 
     <ui-view></ui-view>
 
-    <a ui-sref="connexion" ui-sref-active="active">Se déconnecter</a>
+    <a ui-sref="connexion" ng-click="deconnexion()" ui-sref-active="active">Se déconnecter</a>
 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>

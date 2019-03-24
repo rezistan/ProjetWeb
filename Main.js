@@ -203,6 +203,7 @@ app.get('/msg/:id', function(req,res)
 		var cpt = message.lireMsgFiltre();
 	}
 	else{ //message auteur
+		console.log(id);
 		var cpt = message.messagesAuteur(id);
 	}
 	if(cpt===false){ 

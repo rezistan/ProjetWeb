@@ -76,7 +76,7 @@ var lireMsgFiltre= function(){
 var messagesAuteur = function(idAuteur){
 	listeMsgAuteur = {};
 	for(var i=0; i<Object.keys(listeMessages).length; i++){
-		if(listeMessages[i].idAuteur === idAuteur){
+		if(listeMessages[i].idAuteur == idAuteur){
 			listeMsgAuteur[Object.keys(listeMsgAuteur).length] = listeMessages[i];
 		}
 	}

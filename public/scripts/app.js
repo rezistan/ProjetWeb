@@ -44,15 +44,7 @@ angular.module('projetWeb', [
         $scope.resultat = error.data.error;
        });
     };
-
-   /* $scope.position = function() {
-      MyFactoryCompte.get({ id: $scope.obj.id }, function(retour) {
-        $scope.resultat = retour;
-      }, function(error) {
-        $scope.resultat = error.data.error;
-       });
-    };
-  */
+    
     $scope.connexion = function() {
       MyFactoryCompte.get({ id: $scope.obj.id }, function(retour) {
         //var type;
@@ -76,6 +68,10 @@ angular.module('projetWeb', [
       }, function(error) {
         $scope.resultat = error.data.error;
       });
+    };
+    
+    $scope.deconnexion = function() {
+      $rootScope.idSession = localStorage.removeItem('idSession');
     };
 
     $scope.userListe = function() {
@@ -164,17 +160,6 @@ angular.module('projetWeb', [
        });
     };
 
-    /*
-    $scope.voirOffresId = function({ id: $scope.obj.id }, idSession) {
-      MyFactoryOffre.get(function(retour) {
-        $rootScope.offres = retour;
-        $state.go("offre");
-        //alert(JSON.stringify($scope.offres));
-      }, function(error) {
-        $scope.offres = error;
-       });
-    };
-    */
   })
   .factory('MyFactoryMessage', function ($resource) {
     // ce qui est important c'est le mot 'id' qui doit être le meme partout car c'est le parametre 
@@ -204,9 +189,12 @@ angular.module('projetWeb', [
 
     $scope.position = function(idSession) {
       MyFactoryMessage.get({ id: idSession }, function(retour) {
-        $scope.resultat = retour;
+        //alert(JSON.stringify(retour));
+        localStorage.setItem('questions', JSON.stringify(retour));
+        $rootScope.questions = JSON.parse(localStorage.getItem('questions'));
+        $state.go("listeMesQuestions");
       }, function(error) {
-        $scope.resultat = error.data.error;
+        $scope.questions = error.data.error;
        });
     };
 
@@ -329,6 +317,7 @@ myApp.config(function($stateProvider) {
       url: '/listeMesQuestions', 
       templateUrl: '/pages/html/listeMesQuestions.html',
       controller: 'MessageCtrl'
+    },
 
      { 
       name: 'listeARepondre', 

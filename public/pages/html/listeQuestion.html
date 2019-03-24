@@ -1,4 +1,4 @@
-<h1>Liste de question</h1>
+<h1>Liste de questions</h1>
 <div ng-controller="MessageCtrl">
 
 <!--
@@ -14,6 +14,7 @@
         <tr>
             <th scope="col">id</th>
             <th scope="col">Auteur</th>
+            <th scope="col">Date</th>
             <th scope="col">Question</th>
             <th scope="col">Reponse</th>
         </tr>
@@ -21,6 +22,7 @@
         <tr ng-repeat="message in questions">
             <td scope="col">{{ message.id }}</td>
             <td scope="col">{{ message.idAuteur }}</td>
+            <td scope="col">{{ message.horodatage }}</td>
             <td scope="col">{{ message.contenu }}</td>
             <td scope="col">{{ message.reponse }}</td>
         </tr>      
