@@ -74,12 +74,13 @@ var lireMsgFiltre= function(){
 }
 
 var messagesAuteur = function(idAuteur){
-	listeMsgAuteur = [];
-	for(var mess in listeMessages){
-		if(mess.idAuteur === idAuteur){
-			listeMsgAuteur.push(mess);
+	listeMsgAuteur = {};
+	for(var i=0; i<Object.keys(listeMessages).length; i++){
+		if(listeMessages[i].idAuteur === idAuteur){
+			listeMsgAuteur[Object.keys(listeMsgAuteur).length] = listeMessages[i];
 		}
 	}
+	console.log(listeMsgAuteur);
 	return listeMsgAuteur;
 }
 /*
@@ -95,3 +96,4 @@ exports.repondreQuestion = repondreQuestion;
 exports.lireMsg = lireMsg;
 exports.lireMsgFiltre = lireMsgFiltre;
 exports.positionMessage = positionMessage;
+exports.messagesAuteur = messagesAuteur;

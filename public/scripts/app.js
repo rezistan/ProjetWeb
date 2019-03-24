@@ -202,8 +202,8 @@ angular.module('projetWeb', [
        //$state.go("offre");
     };
 
-    $scope.position = function() {
-      MyFactoryMessage.get({ id: $scope.obj.id }, function(retour) {
+    $scope.position = function(idSession) {
+      MyFactoryMessage.get({ id: idSession }, function(retour) {
         $scope.resultat = retour;
       }, function(error) {
         $scope.resultat = error.data.error;
@@ -325,12 +325,18 @@ myApp.config(function($stateProvider) {
     },
 
      { 
+      name: 'listeMesQuestions', 
+      url: '/listeMesQuestions', 
+      templateUrl: '/pages/html/listeMesQuestions.html',
+      controller: 'MessageCtrl'
+
+     { 
       name: 'listeARepondre', 
       url: '/listeARepondre', 
       templateUrl: '/pages/html/listeARepondre.html',
       controller: 'MessageCtrl'
     },
-    
+
     { 
       name: 'index', 
       url: '/index', 
